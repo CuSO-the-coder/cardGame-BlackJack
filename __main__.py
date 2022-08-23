@@ -194,3 +194,9 @@ distro()
 print(banco,"->", valueCheck(banco))
 print(p1, "->", valueCheck(p1))
 firstAction()
+
+#aggiungi il sistema di puntate
+#aggiungi il pagamento da parte del banco
+#aggiungi il file di cache
+#aggiungi il loading screen
+#aggiungi la funzione turn() per la visualizzazione da terminale
