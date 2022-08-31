@@ -2,9 +2,7 @@ import random
 import os
 import sys 
 import time
-from unicodedata import name
-from reader import feed
-    
+
 mazzo=[
                 "Ac", "Aq", "Af", "Ap",
                 "2c", "2q", "2f", "2p",
