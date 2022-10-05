@@ -1,7 +1,4 @@
 import random
-import os
-import sys 
-import time
 
 mazzo=[
                 "Ac", "Aq", "Af", "Ap",
@@ -78,12 +75,12 @@ def firstAction():
     if splitCheck():
         risp=0
         while not 1<=risp<=4:
-            risp=int(input("1- Stai\n2-Chiama carta\n3-Raddoppia\n4-Split\n->"))
+            risp=int(input("1- Stai\n2- Chiama carta\n3- Raddoppia\n4- Split\n->"))
             if risp==1:
                 tBanco()
                 break
             elif risp==2:
-                call()
+                call(p1)
             elif risp==3:
                 raddoppio()
             elif risp==4:
@@ -91,34 +88,36 @@ def firstAction():
     else:
         risp=0
         while not 1<=risp<=4:
-            risp=int(input("1- Stai\n2-Chiama carta\n3-Raddoppia\n->"))
+            risp=int(input("1- Stai\n2- Chiama carta\n3- Raddoppia\n->"))
             if risp==1:
                 tBanco()
                 break
             elif risp==2:
-                call()
+                call(p1)
             elif risp==3:
                 raddoppio()
 
 def valueCheck(g):
     val=0
-    acePresent=False
+    acePresent=0
     for ele in g:
         val+=carte_valori[ele[0]]
         if ele[0]=="A":
-            acePresent=True
-    if val >22  and acePresent:
-        val-=10
+            acePresent+=1
+    if val >=22  and acePresent:
+        while val>=22 and acePresent!=0:
+            val-=10
+            acePresent-=1
     return(val)
 
-def call(p1):
-    p1.append(mazzo[0])
+def call(g):
+    g.append(mazzo[0])
     del mazzo[0]
-    print(p1, valueCheck(p1))
-    if valueCheck(p1)==21:
+    table(g)    
+    if valueCheck(g)==21 and splitted==False:
         print("Blackjack!")
         tBanco()
-    if valueCheck(p1)<22:
+    elif valueCheck(g)<22 and splitted==False:
         risp=0
         while not 1<= risp <=2:
             risp=int(input("1-Stai\n2-Chiama carta\n->"))
@@ -126,9 +125,22 @@ def call(p1):
                 tBanco()
                 break
             elif risp==2:
-                call()
-    else:
+                call(g)
+    elif valueCheck(g)==21 and splitted==True:
+        print("Blackjack!")
+    elif  valueCheck(g)<22 and splitted==True:
+        risp=0
+        while not 1<= risp <=2:
+            risp=int(input("1-Stai\n2-Chiama carta\n->"))
+            if risp==1:
+                break
+            elif risp==2:
+                call(g)
+    elif valueCheck(g)>=22 and splitted==True:
         print("Hai sballato")
+    elif valueCheck(g)>=22 and splitted==False:
+        print("Hai sballato")
+        
 
 def raddoppio():
     rad=True
@@ -151,19 +163,22 @@ def split():
     del mazzo[0]
     p1_1.append(mazzo[0])
     del mazzo[0]
+    print("\n\n Ecco la prima parte dello split")
     call(p1)
+    print("\n\n Ecco la seconda parte dello split")
     call(p1_1)
             
 def tBanco():
-    #turn
+    print("Tocca al banco!")
+    print("le carte del banco: ", banco, "-->",valueCheck(banco),end="\n\n")
+    print("la tua mano: ", p1, "-->",valueCheck(p1), end="\n\n")
     while valueCheck(banco)<=16:
         banco.append(mazzo[0])
         del mazzo[0]
-        print(banco, "->", valueCheck(banco))
+        print("le carte del banco: ", banco, "-->",valueCheck(banco),end="\n\n")
     if valueCheck(banco)==21:
         print("Blackjack!")
     if valueCheck(banco)<22:
-        print(valueCheck(banco))
         winCheck()
     else:
         print("Il banco sballa, hai vinto")
@@ -187,11 +202,25 @@ def winCheck():
         else:
             print("Hai vinto")
 
+
+
+def table(n):
+    print("le carte del banco: ", banco[0], "*", end="\n\n")
+    print("la tua mano: ", n, "-->",valueCheck(p1), end="\n\n")
+
+
+
+
+
+
 shuffle()
 distro()
-print(banco,"->", valueCheck(banco))
-print(p1, "->", valueCheck(p1))
+table(p1)
+#print(banco,"->", valueCheck(banco))
+#print(p1, "->", valueCheck(p1))
 firstAction()
+
+
 
 #aggiungi il sistema di puntate
 #aggiungi il pagamento da parte del banco
