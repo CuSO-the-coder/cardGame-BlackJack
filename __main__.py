@@ -38,7 +38,6 @@ carte_valori={
                 "7"     :   7,
                 "8"     :   8,
                 "9"     :   9,
-                "1"   :    10,
                 "J"      :   10,
                 "Q"    :    10,
                 "K"     :    10
@@ -51,6 +50,42 @@ p1, p1_1 = [] , []
 rad=False
 splitted=False
 
+def load():
+    for i in range(6):
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("\n")
+        print("Caricamento")
+        print("° "*(i+1))
+        time.sleep(0.5)
+    
+    time.sleep(1)
+    
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("\n\n")
+    print(" _______  __                   __                                  __     ")  
+    print("|       \|  \                 |  \                                |  \      ")
+    print("| ▓▓▓▓▓▓▓\ ▓▓ ______   _______| ▓▓   __       __  ______   _______| ▓▓   __ ")
+    print("| ▓▓__/ ▓▓ ▓▓|      \ /       \ ▓▓  /  \     |  \|      \ /       \ ▓▓  /  \ ")
+    print("| ▓▓    ▓▓ ▓▓ \▓▓▓▓▓▓\  ▓▓▓▓▓▓▓ ▓▓_/  ▓▓      \▓▓ \▓▓▓▓▓▓\  ▓▓▓▓▓▓▓ ▓▓_/  ▓▓")
+    print("| ▓▓▓▓▓▓▓\ ▓▓/      ▓▓ ▓▓     | ▓▓   ▓▓      |  \/      ▓▓ ▓▓     | ▓▓   ▓▓ ")
+    print("| ▓▓__/ ▓▓ ▓▓  ▓▓▓▓▓▓▓ ▓▓_____| ▓▓▓▓▓▓\      | ▓▓  ▓▓▓▓▓▓▓ ▓▓_____| ▓▓▓▓▓▓\ ")
+    print("| ▓▓    ▓▓ ▓▓\▓▓    ▓▓\▓▓     \ ▓▓  \▓▓\     | ▓▓\▓▓    ▓▓\▓▓     \ ▓▓  \▓▓\ ")
+    print(" \▓▓▓▓▓▓▓ \▓▓ \▓▓▓▓▓▓▓ \▓▓▓▓▓▓▓\▓▓   \▓▓__   | ▓▓ \▓▓▓▓▓▓▓ \▓▓▓▓▓▓▓\▓▓   \▓▓")
+    print("                                       |  \__/ ▓▓              ")             
+    print("                                        \▓▓    ▓▓                    ")       
+    print("                                         \▓▓▓▓▓▓           ")                 
+
+    print("-------------------")
+    print("╔═══╗    ╔═══╗╔═══╗")
+    print("║╔═╗║    ║╔═╗║║╔═╗║")
+    print("║║ ╚╝╔╗╔╗║╚══╗║║ ║║")
+    print("║║ ╔╗║║║║╚══╗║║║ ║║")
+    print("║╚═╝║║╚╝║║╚═╝║║╚═╝║")
+    print("╚═══╝╚══╝╚═══╝╚═══╝")
+    print("-------------------")
+    time.sleep(2.4)
+
+    os.system('cls' if os.name == 'nt' else 'clear')
 def shuffle():
     random.shuffle(mazzo)
 
@@ -208,52 +243,6 @@ def winCheck():
             askForReplay()
 
 
-
-def table(n):
-    print("le carte del banco: ", banco[0], "*", end="\n\n")
-    print("la tua mano: ", n, "-->",valueCheck(p1), end="\n\n")
-
-
-
-
-def load():
-    for i in range(6):
-        os.system('cls' if os.name == 'nt' else 'clear')
-        print("\n")
-        print("Caricamento")
-        print("° "*(i+1))
-        time.sleep(0.5)
-    
-    time.sleep(1)
-    
-    os.system('cls' if os.name == 'nt' else 'clear')
-    print("\n\n")
-    print(" _______  __                   __                                  __     ")  
-    print("|       \|  \                 |  \                                |  \      ")
-    print("| ▓▓▓▓▓▓▓\ ▓▓ ______   _______| ▓▓   __       __  ______   _______| ▓▓   __ ")
-    print("| ▓▓__/ ▓▓ ▓▓|      \ /       \ ▓▓  /  \     |  \|      \ /       \ ▓▓  /  \ ")
-    print("| ▓▓    ▓▓ ▓▓ \▓▓▓▓▓▓\  ▓▓▓▓▓▓▓ ▓▓_/  ▓▓      \▓▓ \▓▓▓▓▓▓\  ▓▓▓▓▓▓▓ ▓▓_/  ▓▓")
-    print("| ▓▓▓▓▓▓▓\ ▓▓/      ▓▓ ▓▓     | ▓▓   ▓▓      |  \/      ▓▓ ▓▓     | ▓▓   ▓▓ ")
-    print("| ▓▓__/ ▓▓ ▓▓  ▓▓▓▓▓▓▓ ▓▓_____| ▓▓▓▓▓▓\      | ▓▓  ▓▓▓▓▓▓▓ ▓▓_____| ▓▓▓▓▓▓\ ")
-    print("| ▓▓    ▓▓ ▓▓\▓▓    ▓▓\▓▓     \ ▓▓  \▓▓\     | ▓▓\▓▓    ▓▓\▓▓     \ ▓▓  \▓▓\ ")
-    print(" \▓▓▓▓▓▓▓ \▓▓ \▓▓▓▓▓▓▓ \▓▓▓▓▓▓▓\▓▓   \▓▓__   | ▓▓ \▓▓▓▓▓▓▓ \▓▓▓▓▓▓▓\▓▓   \▓▓")
-    print("                                       |  \__/ ▓▓              ")             
-    print("                                        \▓▓    ▓▓                    ")       
-    print("                                         \▓▓▓▓▓▓           ")                 
-
-    print("-------------------")
-    print("╔═══╗    ╔═══╗╔═══╗\n║╔═╗║    ║╔═╗║║╔═╗║\n║║ ╚╝╔╗╔╗║╚══╗║║ ║║\n║║ ╔╗║║║║╚══╗║║║ ║║\n║╚═╝║║╚╝║║╚═╝║║╚═╝║\n╚═══╝╚══╝╚═══╝╚═══╝")
-    print("-------------------")
-    time.sleep(2.4)
-
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-def play():
-    shuffle()
-    distro()
-    table(p1)
-    firstAction()
-
 def askForReplay():
     risp=""
     while True:
@@ -267,6 +256,16 @@ def askForReplay():
             print("Va bene, rigioca quando vuoi")
         else:
             print("Davvero non riesci scrivere 'y' o 'n'? \nFiga zio ma ti svegli??")
+
+def table(n):
+    print("le carte del banco: ", banco[0], "*", end="\n\n")
+    print("la tua mano: ", n, "-->",valueCheck(p1), end="\n\n")
+
+def play():
+    shuffle()
+    distro()
+    table(p1)
+    firstAction()
 
 def main():
     load()
