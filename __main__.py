@@ -1,4 +1,7 @@
 import random
+import os
+import sys
+import time
 
 mazzo=[
                 "Ac", "Aq", "Af", "Ap",
@@ -111,6 +114,7 @@ def valueCheck(g):
     return(val)
 
 def call(g):
+    os.system('cls' if os.name == 'nt' else 'clear')
     g.append(mazzo[0])
     del mazzo[0]
     table(g)    
@@ -140,6 +144,7 @@ def call(g):
         print("Hai sballato")
     elif valueCheck(g)>=22 and splitted==False:
         print("Hai sballato")
+        askForReplay()
         
 
 def raddoppio():
@@ -169,11 +174,13 @@ def split():
     call(p1_1)
             
 def tBanco():
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("Tocca al banco!")
     print("le carte del banco: ", banco, "-->",valueCheck(banco),end="\n\n")
     print("la tua mano: ", p1, "-->",valueCheck(p1), end="\n\n")
     while valueCheck(banco)<=16:
         banco.append(mazzo[0])
+        print("il banco pesca...")
         del mazzo[0]
         print("le carte del banco: ", banco, "-->",valueCheck(banco),end="\n\n")
     if valueCheck(banco)==21:
@@ -182,25 +189,30 @@ def tBanco():
         winCheck()
     else:
         print("Il banco sballa, hai vinto")
+        askForReplay()
+
         
 def winCheck():
     if splitted:
         if valueCheck(p1)==valueCheck(banco) and valueCheck(p1_1)==valueCheck(banco):
             print("parità")
-            #vuoi rigiocare?
+            askForReplay()
         elif valueCheck(p1)<valueCheck(banco) and valueCheck(p1_1)<valueCheck(banco):
             print("Vince il banco")
-            #vuoi rigiocare
+            askForReplay()
         else:
             print("Hai vinto")
-            #vuoi rigiocare?
+            askForReplay()
     else:
         if valueCheck(p1)==valueCheck(banco):
             print("parità")
+            askForReplay()
         elif valueCheck(p1)<valueCheck(banco):
             print("Vince il banco")
+            askForReplay()
         else:
             print("Hai vinto")
+            askForReplay()
 
 
 
@@ -211,19 +223,68 @@ def table(n):
 
 
 
+def load():
+    for i in range(6):
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("\n")
+        print("Caricamento")
+        print("° "*(i+1))
+        time.sleep(0.5)
+    
+    time.sleep(1)
+    
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("\n\n")
+    print(" _______  __                   __                                  __     ")  
+    print("|       \|  \                 |  \                                |  \      ")
+    print("| ▓▓▓▓▓▓▓\ ▓▓ ______   _______| ▓▓   __       __  ______   _______| ▓▓   __ ")
+    print("| ▓▓__/ ▓▓ ▓▓|      \ /       \ ▓▓  /  \     |  \|      \ /       \ ▓▓  /  \ ")
+    print("| ▓▓    ▓▓ ▓▓ \▓▓▓▓▓▓\  ▓▓▓▓▓▓▓ ▓▓_/  ▓▓      \▓▓ \▓▓▓▓▓▓\  ▓▓▓▓▓▓▓ ▓▓_/  ▓▓")
+    print("| ▓▓▓▓▓▓▓\ ▓▓/      ▓▓ ▓▓     | ▓▓   ▓▓      |  \/      ▓▓ ▓▓     | ▓▓   ▓▓ ")
+    print("| ▓▓__/ ▓▓ ▓▓  ▓▓▓▓▓▓▓ ▓▓_____| ▓▓▓▓▓▓\      | ▓▓  ▓▓▓▓▓▓▓ ▓▓_____| ▓▓▓▓▓▓\ ")
+    print("| ▓▓    ▓▓ ▓▓\▓▓    ▓▓\▓▓     \ ▓▓  \▓▓\     | ▓▓\▓▓    ▓▓\▓▓     \ ▓▓  \▓▓\ ")
+    print(" \▓▓▓▓▓▓▓ \▓▓ \▓▓▓▓▓▓▓ \▓▓▓▓▓▓▓\▓▓   \▓▓__   | ▓▓ \▓▓▓▓▓▓▓ \▓▓▓▓▓▓▓\▓▓   \▓▓")
+    print("                                       |  \__/ ▓▓              ")             
+    print("                                        \▓▓    ▓▓                    ")       
+    print("                                         \▓▓▓▓▓▓           ")                 
+
+    print("-------------------")
+    print("╔═══╗    ╔═══╗╔═══╗\n║╔═╗║    ║╔═╗║║╔═╗║\n║║ ╚╝╔╗╔╗║╚══╗║║ ║║\n║║ ╔╗║║║║╚══╗║║║ ║║\n║╚═╝║║╚╝║║╚═╝║║╚═╝║\n╚═══╝╚══╝╚═══╝╚═══╝")
+    print("-------------------")
+    time.sleep(2.4)
+
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def play():
+    shuffle()
+    distro()
+    table(p1)
+    firstAction()
+
+def askForReplay():
+    risp=""
+    while True:
+        risp=input("Vuoi rigiocare? [y/n] \n")
+        if risp=="y":
+            print("Perfetto, ricominciamo!")
+            time.sleep(1.8)
+            os.system('cls' if os.name == 'nt' else 'clear')
+            play()
+        elif risp=="n":
+            print("Va bene, rigioca quando vuoi")
+        else:
+            print("Davvero non riesci scrivere 'y' o 'n'? \nFiga zio ma ti svegli??")
+
+def main():
+    load()
+    play()
+
+if __name__ == "__main__":
+    main()
 
 
-shuffle()
-distro()
-table(p1)
-#print(banco,"->", valueCheck(banco))
-#print(p1, "->", valueCheck(p1))
-firstAction()
 
-
-
+#rendi obj oriented :)    
 #aggiungi il sistema di puntate
 #aggiungi il pagamento da parte del banco
 #aggiungi il file di cache
-#aggiungi il loading screen
-#aggiungi la funzione turn() per la visualizzazione da terminale
